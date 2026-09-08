@@ -1,0 +1,33 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "golang-backend-skills",
+  "version": "1.0.0",
+  "description": "Independent skills for idiomatic Go backend development.",
+  "author": {
+    "name": "Dankosik",
+    "url": "https://github.com/Dankosik"
+  },
+  "homepage": "https://github.com/Dankosik/golang-backend-skills",
+  "repository": "https://github.com/Dankosik/golang-backend-skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "developer-tools",
+    "go",
+    "backend"
+  ],
+  "extensions": {
+    "io.github.dankosik.distribution": {
+      "displayName": "Go Backend Skills",
+      "shortDescription": "Independent skills for idiomatic Go backend development.",
+      "longDescription": "16 focused, independent skills for Go development. Implement clear requirements, preserve project choices, and use focused evidence for testing and performance.",
+      "defaultPrompt": [
+        "Use go-implement to implement this specification with our existing technical choices.",
+        "Help me write focused tests for this Go change.",
+        "Investigate the cause of this Go performance problem."
+      ],
+      "brandColor": "#007D9C",
+      "skillCount": 16
+    }
+  }
+}
