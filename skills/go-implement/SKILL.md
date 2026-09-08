@@ -17,4 +17,4 @@ New dependencies, configuration, and adjacent cleanup still need a present requi
 
 If a concrete contradiction prevents correct implementation, identify it and continue independent work. Ask only for information that changes the required outcome; routine implementation choices remain yours.
 
-Verify the requested behavior with focused checks, including the meaningful failure case, and respect existing required checks. Finish with working code, actual verification, and any specific unresolved requirement.
+Verify the requested behavior with focused checks that would fail for a plausible contract violation, including the meaningful failure case. Match testing effort to the change and respect existing required checks. Finish with working code, actual verification, and any specific unresolved requirement.

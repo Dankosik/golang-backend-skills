@@ -15,4 +15,4 @@ Use errors as values. Add meaningful context, preserve intentional error identit
 
 **Reuse.** Prefer existing project, standard-library, and established dependency operations when their semantics match. Generics should express a real shared algorithm or type relationship. Keep wrappers only for domain meaning or adaptation.
 
-Finish with formatted code and focused checks of the observable contract the change could disturb.
+Finish with formatted code and focused checks that would fail for a plausible violation of the observable contract the change could disturb.

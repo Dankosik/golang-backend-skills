@@ -5,7 +5,7 @@ description: "Behavior. Use when writing or improving Go unit tests, table tests
 
 # Go Testing
 
-**Behavior first.** Find the observable promise this change could break. Choose inputs that separate a correct implementation from a plausible wrong one; derive expectations independently of the production algorithm. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Behavior first.** Find the observable promise this change could break. Choose fixtures whose values and relationships distinguish correct behavior from a plausible defect; derive expectations independently of the production algorithm. Preserve relevant contract distinctions through observation and assertion: decoding, normalization, or helpers must not make incorrect results appear correct. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
 
 Read the existing tests and module before choosing APIs. Preserve the Go baseline and established assertion or mocking libraries. Start with ordinary values and direct calls. Use a fake or mock for a meaningful collaborator boundary; verify interactions when the interaction itself is required. Avoid interfaces created solely to mock internal steps.
 

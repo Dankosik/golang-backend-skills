@@ -5,11 +5,11 @@ description: "Mechanism. Use when Go tests must establish HTTP or RPC compositio
 
 # Go Integration Testing
 
-**Prove the mechanism.** Identify what makes the promised behavior true, then choose the smallest test boundary that includes it. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Prove the mechanism.** Identify what makes the promised behavior true, then choose the smallest test boundary that includes it. Choose scenarios that expose the relevant failure at that boundary. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
 
 Preserve the project's Go version, drivers, transport, and test infrastructure. Reuse existing harnesses and established Testcontainers modules where suitable. A container is an environment, not the assertion. Match the target engine and relevant configuration, apply real migrations, establish readiness, and isolate each test's data.
 
-Exercise the actual router, middleware, or interceptor when their behavior matters. An `httptest` recorder covers handler output; use a real client/server transport for connection, TLS, streaming, or disconnect claims. Keep the mechanism under test real and replace only collaborators beyond it. A fabricated principal does not prove credential verification.
+Exercise the actual router, middleware, or interceptor when their behavior matters. An `httptest` recorder covers handler output; use a real client/server transport for connection, TLS, streaming, or disconnect claims. Keep the mechanism under test real and replace only collaborators beyond it. A fabricated principal does not prove credential verification. Preserve contract-relevant distinctions in observed responses and effects; decoding, normalization, or test helpers must not conceal a violation.
 
 Database claims need the target engine. Exercise transaction boundaries and use independent connections for arbitration, locking, and visibility. Observe committed effects through a fresh read. Test-side rollback cannot undo independent application commits.
 
