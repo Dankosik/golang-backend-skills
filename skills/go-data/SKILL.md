@@ -1,6 +1,6 @@
 ---
 name: go-data
-description: "Atomicity. Use for Go query shape, database-value mapping, transaction consistency, or migration-compatibility decisions."
+description: "Implement or review Go query shape, database-value mapping, transactions, and migration compatibility."
 ---
 
 # Go Data
@@ -16,3 +16,5 @@ Use constraints, conditional writes, or locks where an invariant needs arbitrati
 For queries and mappings, work backward from the required result to a bounded fetch plan. Parameterize values and constrain dynamic identifiers. Preserve nulls, large integers, decimals, and time semantics across database and Go types; inspect generated SQL when query behavior matters. For migrations, use the existing schema owner and consider application versions that must coexist.
 
 Test pure conversion with representative driver values; do not invent a database harness for a mapping-only claim. Query execution, constraints, isolation, and locking need the relevant engine and real mechanism; observe committed state independently when commitment or visibility is the claim. Mocks can test orchestration, not those database properties. Report unavailable evidence without claiming a weaker check proves it.
+
+For review-only work, do not edit files. Tie each finding to the query or transaction path and a concrete invariant violation; check existing constraints and isolation before claiming a race.

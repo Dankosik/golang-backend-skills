@@ -1,6 +1,6 @@
 ---
 name: go-implement
-description: "Execution. Implement requested Go backend behavior within the project's existing contracts and technical choices."
+description: "Implement clear Go backend requirements or an agreed design through working code and relevant checks."
 ---
 
 # Go Implement
@@ -14,6 +14,8 @@ Read the affected code and callers, then extend the existing path. Resolve local
 **Clarity.** Write intention-revealing names, cohesive responsibilities, explicit control flow, and visible effects and failure paths. Keep changes local and idiomatic. Apply SOLID, DRY, and YAGNI as heuristics: abstract shared knowledge, preserve distinct business rules, and add only structure justified by current requirements. New dependencies, configuration, and adjacent cleanup need a present requirement.
 
 If a concrete contradiction prevents correct implementation, identify it and continue independent work. Ask only for information that materially changes the required outcome; routine implementation choices remain yours.
+
+Work in small behavior-complete increments where they reduce feedback delay; do not build every layer before checking a usable path. Derive acceptance checks from the requirement, not from what the first implementation happens to do.
 
 Format changed Go code. Use the project's build and focused tests for the affected behavior, including a meaningful failure case. Add race, transport, database, fuzz, or performance checks only for a concrete claim or required project gate. Reuse applicable results for the same revision and environment; loading another skill is not a reason to rerun them.
 

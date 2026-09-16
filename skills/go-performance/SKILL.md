@@ -1,6 +1,6 @@
 ---
 name: go-performance
-description: "Evidence. Use to audit or improve Go latency, throughput, CPU, memory, allocation, or contention, or to design a backend benchmark."
+description: "Audit or measure Go latency, throughput, CPU, memory, allocation, and contention; optimize demonstrated bottlenecks."
 ---
 
 # Go Performance

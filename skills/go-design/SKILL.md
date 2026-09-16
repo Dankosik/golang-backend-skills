@@ -1,6 +1,6 @@
 ---
 name: go-design
-description: "Cohesion. Use when deciding or reviewing Go responsibilities, package boundaries, consumer interfaces, or abstractions for a concrete change."
+description: "Decide or review Go responsibilities, package boundaries, consumer interfaces, and concrete abstractions."
 ---
 
 # Go Design
@@ -15,4 +15,4 @@ Choose composition, explicit dependencies, meaningful package names, and the sma
 
 Apply SOLID, DRY, and YAGNI as judgment: centralize shared rules while preserving independent reasons to change. Evaluate abstractions by what their callers no longer need to understand, including mutation ownership, resource lifetime, and error contracts.
 
-For analysis or review, explain the responsibility problem and smallest justified change without editing files. For refactoring, finish when the changed responsibility has a clear owner, each retained boundary earns its cost, and focused checks preserve caller-visible behavior and effect ordering. Do not make design a prerequisite for an already settled implementation task.
+For analysis or review without a change request, cite the affected callers and explain the responsibility problem without editing files. Distinguish a violated project rule from a design preference; check what a boundary owns before recommending removal. For refactoring, finish when the changed responsibility has a clear owner, each retained boundary earns its cost, and focused checks preserve caller-visible behavior and effect ordering. Do not make design a prerequisite for an already settled implementation task.
