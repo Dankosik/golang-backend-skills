@@ -1,6 +1,6 @@
 ---
 name: go-testing
-description: "Behavior. Use when writing or improving Go unit tests, table tests, test doubles, fuzz targets, or deterministic tests of concurrent code."
+description: "Write or review Go unit tests, table cases, test doubles, fuzz targets, and deterministic concurrency tests."
 ---
 
 # Go Testing
@@ -8,6 +8,8 @@ description: "Behavior. Use when writing or improving Go unit tests, table tests
 **Behavior first.** Find the observable promise this change could break. Choose distinguishing fixtures and derive expectations independently of the production algorithm. Preserve contract distinctions in observations and assertions: decoding, normalization, or helpers must not conceal a violation. Honor requirements and preserve settled choices outside the requested change.
 
 Use existing tests and the supported Go baseline to select APIs. Inspect module or runner settings when those choices are uncertain, not as a repeated prerequisite. Preserve assertion and mocking libraries. Start with ordinary values and direct calls; use doubles for meaningful collaborator boundaries and verify interactions only when required. Avoid interfaces created solely to mock internal steps.
+
+Confirm that a new regression test rejects the original defect when practical; a broken build or missing dependency is not its intended failure. Observe behavior through the relevant caller boundary rather than copying private implementation steps into assertions.
 
 Group cases sharing one rule with named subtests; keep distinct behaviors readable. Reuse fixtures and helpers before building a test framework. Register cleanup with the resource owner. Parallelize only isolated cases; process environment, working directory, and shared fixtures are not isolated by subtest names.
 

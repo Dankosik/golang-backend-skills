@@ -9,6 +9,10 @@
 - Keep settled choices outside the change and avoid reopening an explicitly agreed cache or migration.
 - Refresh Go-specific starter prompts and native metadata; retain all 16 independently installable skill names and paths.
 - Add an instruction audit, 20 behavioral evaluation specifications, and an unfilled results template. Model comparisons have not been run.
+- Lead descriptions with applicable actions; close standalone review-only gaps and require domain-specific counterevidence before reporting missing protections.
+- Add observable implementation slices and meaningful regression failures without imposing a mandatory TDD or review pipeline.
+- Add five opt-in Go artifact fixtures, a bounded evaluator, its unit tests, and 24 unexecuted routing/counterevidence specifications. Artifact controls are not model evaluation results.
+- Document reference adoption, rejected prescriptions, a bounded independent-review protocol, and actual capability/evidence limits.
 - Prepare the next PATCH candidate only; published v1.0.0 pins, tags, and marketplace entries are unchanged.
 
 ## 1.0.0 — 2026-09-08

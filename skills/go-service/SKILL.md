@@ -1,6 +1,6 @@
 ---
 name: go-service
-description: "Composition. Use for Go dependency wiring, configuration, startup, owned-resource lifetime, or graceful-shutdown decisions."
+description: "Implement or review Go dependency wiring, configuration, startup cleanup, resource lifetime, and graceful shutdown."
 ---
 
 # Go Service
@@ -15,4 +15,4 @@ For shutdown changes, separate stopping admission, draining accepted work, cance
 
 When health or server lifetime is affected, distinguish readiness from liveness and account for long-lived or hijacked connections the server does not drain. Preserve the deployment contract.
 
-Verify the changed configuration, startup, or shutdown property with observable cleanup at the relevant boundary. Do not require all lifecycle scenarios for unrelated wiring changes. For diagnosis, report the supported explanation rather than making unsolicited changes.
+Verify the changed configuration, startup, or shutdown property with observable cleanup at the relevant boundary. Do not require all lifecycle scenarios for unrelated wiring changes. For review or diagnosis without a change request, report the supported explanation and resource owner rather than editing files.

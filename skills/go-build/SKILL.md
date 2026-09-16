@@ -1,6 +1,6 @@
 ---
 name: go-build
-description: "Resolution. Use for Go module or workspace problems, toolchain compatibility, generated code, dependency changes, or build and packaging failures."
+description: "Resolve Go module, workspace, toolchain, dependency, generation, and build compatibility problems."
 ---
 
 # Go Build

@@ -77,7 +77,7 @@ Keep each skill independent and decision-focused. Prefer an established concept 
 
 The pack uses the [Agent Skills format](https://agentskills.io/specification). Structural validity and a few useful examples do not establish a universal improvement across models.
 
-For maintainers: [instruction audit](docs/instruction-audit.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill. No behavioral comparison results are claimed by the candidate.
+For maintainers: [instruction audit](docs/instruction-audit.md), [reference decisions and review protocol](docs/reference-upgrade.md), [behavioral evaluation](docs/behavioral-evaluation.md), [executable fixture evaluator](docs/executable-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill. The optional evaluator checks five disposable Go fixtures; it does not invoke a model or turn artifact checks into behavioral evidence. No behavioral comparison results are claimed by the candidate.
 
 ## Acknowledgements
 

@@ -1,13 +1,13 @@
 ---
 name: go-implement
-description: "Execution. Implement requested Go backend behavior within the project's existing contracts and technical choices."
+description: "Implement clear Go backend requirements within existing contracts and technical choices."
 ---
 
 # Go Implement
 
 **Execution.** When the intended behavior is clear, implement it directly. Honor the requirements; preserve settled choices outside the requested change. An explicitly requested technical change is not an invitation to redesign unrelated parts.
 
-Read the affected code and callers, then extend the existing path. Resolve local details using the project's Go version, package conventions, and selected infrastructure.
+Read the affected code and callers, then extend the existing path. Resolve local details using the project's Go version, package conventions, and selected infrastructure. For a multi-part change, complete small observable slices rather than building every layer before checking any behavior.
 
 **Reuse.** Before adding a technical helper, look for a matching operation in nearby project code, the supported standard library, or declared dependencies. Keep the search proportional to the helper. Packages such as `strings`, `slices`, and `maps` cover many routine operations. Custom mechanics need a concrete semantic or operational gap; wrappers should add domain meaning or adaptation.
 
