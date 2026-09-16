@@ -1,11 +1,11 @@
 ---
 name: go-idiomatic
-description: "Contracts. Use when writing or simplifying Go values, functions, methods, or collection transformations while preserving caller-visible behavior."
+description: "Contracts. Use for Go representation, error-contract, or collection decisions where caller-visible semantics or readability need attention."
 ---
 
 # Go Idiomatic
 
-**Contracts.** Make the caller's expectations visible in ordinary Go. Identify values, absence, mutation, ordering, effects, and failures before changing their representation. Follow the module's supported Go version and established conventions. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Contracts.** Make the caller's expectations visible in ordinary Go. Identify values, absence, mutation, ordering, effects, and failures before changing their representation. Follow the module's supported Go version and conventions. Honor requirements and preserve settled choices outside the requested change.
 
 Use useful zero values where they fit; distinguish an invalid state from an empty result. Preserve nil versus empty where callers or serialization observe it. A typed nil inside an interface is not a nil interface. Choose receivers for mutation, identity, and method sets. Make aliasing explicit when copying reference fields; synchronization primitives must not be copied after use.
 
@@ -15,4 +15,4 @@ Use errors as values. Add meaningful context, preserve intentional error identit
 
 **Reuse.** Prefer existing project, standard-library, and established dependency operations when their semantics match. Generics should express a real shared algorithm or type relationship. Keep wrappers only for domain meaning or adaptation.
 
-Finish with formatted code and focused checks that would fail for a plausible violation of the observable contract the change could disturb.
+For review, explain the contract risk and smallest justified change without editing files. For implementation, finish with formatted code and focused checks for the observable contract the change could disturb; avoid unrelated style churn.

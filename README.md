@@ -8,6 +8,8 @@ One `SKILL.md` per skill. No reference libraries, setup ceremony, mandatory proc
 
 ## Install
 
+The repository prepares 1.0.1; installation examples remain pinned to the published v1.0.0 until a new release exists.
+
 Versioned release: [v1.0.0](https://github.com/Dankosik/golang-backend-skills/releases/tag/v1.0.0).
 Install selected skills, or the entire pack, into your current project:
 
@@ -36,7 +38,7 @@ of review for either provider's public directory.
 | [go-design](skills/go-design/SKILL.md) | Cohesion | Responsibilities, packages, consumer interfaces, and useful abstractions |
 | [go-concurrency](skills/go-concurrency/SKILL.md) | Ownership | Goroutines, channels, synchronization, cancellation, bounds, and joining |
 | [go-debugging](skills/go-debugging/SKILL.md) | Causality | Bugs, panics, hangs, startup failures, and flaky behavior |
-| [go-performance](skills/go-performance/SKILL.md) | Evidence | Measured latency, throughput, CPU, allocation, memory, and contention |
+| [go-performance](skills/go-performance/SKILL.md) | Evidence | Audit or measure latency, throughput, CPU, allocation, memory, and contention |
 | [go-build](skills/go-build/SKILL.md) | Resolution | Modules, workspaces, toolchains, dependencies, generation, and packaging |
 | [go-service](skills/go-service/SKILL.md) | Composition | Dependency wiring, configuration, startup, resource lifetime, and shutdown |
 | [go-http](skills/go-http/SKILL.md) | Translation | Routes, middleware, request decoding, responses, errors, and streaming |
@@ -48,7 +50,13 @@ of review for either provider's public directory.
 | [go-testing](skills/go-testing/SKILL.md) | Behavior | Unit tests, tables, doubles, fuzzing, and deterministic concurrency tests |
 | [go-integration-testing](skills/go-integration-testing/SKILL.md) | Mechanism | HTTP/RPC composition, database behavior, and infrastructure tests |
 
-Use `go-implement` when the task is clear and the work is to implement it. Use a specialist when its particular decision needs attention. Each preserves supplied requirements and settled technical choices; none requires a design phase. Debugging identifies an uncertain cause; performance work measures a resource claim. Unit tests isolate ordinary behavior; integration tests retain the mechanism being tested.
+Use `go-implement` when the task is clear and the work is to implement it. Use a specialist when its particular decision needs attention. Each preserves supplied requirements and settled technical choices; none requires a design phase. Debugging identifies an uncertain cause; performance work distinguishes an audit from measurement or optimization. Unit tests isolate ordinary behavior; integration tests retain the mechanism being tested.
+
+Select skills for decisions that need their guidance, not merely because the repository contains Go. Specialists are not mandatory stages, and distinct decisions can justify several skills. A skill does not expand the requested scope or require every topic in its body to be investigated.
+
+Review and diagnosis produce findings unless changes were requested. Implementation includes applicable verification and fixing failures it introduces, not a stop after the first patch. Preserve settled choices outside the requested change; an explicit migration or agreed cache is not a reason to reopen unrelated decisions.
+
+Match evidence to the changed claim: ordinary Go behavior, a mounted HTTP handler chain, an RPC path, real network transport, or database mechanisms. Build and focused tests are the ordinary starting point, not proof of every boundary. Keep required project checks, reuse still-applicable results, and report unavailable verification without inventing a new environment as a completion gate.
 
 ## Use
 
@@ -68,6 +76,8 @@ The pack preserves your Go baseline, router or framework, database driver or ORM
 Keep each skill independent and decision-focused. Prefer an established concept over a new glossary, a discriminating trigger over a capability catalog, and an observable outcome over a long checklist. Improve wording against a realistic task that exposed a weakness. Keep version lookups and API tutorials out of the skill.
 
 The pack uses the [Agent Skills format](https://agentskills.io/specification). Structural validity and a few useful examples do not establish a universal improvement across models.
+
+For maintainers: [instruction audit](docs/instruction-audit.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill. No behavioral comparison results are claimed by the candidate.
 
 ## Acknowledgements
 

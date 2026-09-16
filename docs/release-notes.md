@@ -1,16 +1,26 @@
-# Go Backend Skills 1.0.0
+# Go Backend Skills 1.0.1
 
-First versioned release of this independent skill pack. Existing SKILL.md
-instructions are unchanged. This release adds portable and native plugin
-metadata, standalone license notices, reproducible installation instructions,
-and a verified distribution archive.
+Candidate release notes. This revision is unreleased; metadata does not imply
+that a v1.0.1 tag or release exists.
 
-- One package version, with the same skill content for every supported channel.
-- Install individual skills using Skills CLI or GitHub CLI.
-- Install the whole pack through the Dankosik Claude/Codex marketplace.
-- Archive checksums and per-file hashes identify the exact release commit.
+This PATCH refines the existing 16 independent skills rather than adding a
+mandatory process. It clarifies routing, review versus editing, task-scoped
+reading, and completion through applicable checks and fixes.
 
-See [installation and updates](https://github.com/Dankosik/golang-backend-skills/blob/v1.0.0/docs/distribution.md).
-An author marketplace is available without curated-directory approval. OpenAI
-and Anthropic public-directory listings have their own submission and review
-process; this release does not claim either listing has been approved.
+Go-specific changes distinguish mounted HTTP handler checks from real transport,
+RPC status/stream checks from service shutdown, and pure data mapping from real
+transaction evidence. Goroutine cancellation is still not a join, and a passing
+race run is still not proof of liveness. Required project checks remain intact.
+
+The candidate includes an authoring audit and 20 behavioral evaluation
+specifications. They are not executed model comparisons or runnable application
+fixtures. No speedup or universal model-quality improvement is claimed. Record
+focused behavioral evidence before publishing semantic instruction changes.
+
+Skill names, paths, licenses, environment requirements, independent installation,
+and distribution scripts are unchanged. Existing install examples remain on
+v1.0.0; no release, tag move, or marketplace update is part of this change.
+
+See [installation and updates](https://github.com/Dankosik/golang-backend-skills/blob/main/docs/distribution.md).
+Public-directory approval is separate from an author marketplace or release;
+this candidate does not claim provider approval.

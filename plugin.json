@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "golang-backend-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Independent skills for idiomatic Go backend development.",
   "author": {
     "name": "Dankosik",
@@ -20,11 +20,11 @@
     "io.github.dankosik.distribution": {
       "displayName": "Go Backend Skills",
       "shortDescription": "Independent skills for idiomatic Go backend development.",
-      "longDescription": "16 focused, independent skills for Go development. Implement clear requirements, preserve project choices, and use focused evidence for testing and performance.",
+      "longDescription": "16 independent skills for Go backends, including HTTP, gRPC, concurrency, and persistence. Implement requested behavior, preserve project choices, and verify the specific contract that changed.",
       "defaultPrompt": [
-        "Use go-implement to implement this specification with our existing technical choices.",
-        "Help me write focused tests for this Go change.",
-        "Investigate the cause of this Go performance problem."
+        "Implement this Go backend requirement within our existing technical choices. Complete the applicable checks and fix failures introduced by the change.",
+        "Add focused tests for this Go HTTP or gRPC change using the smallest boundary that includes the changed mechanism.",
+        "Diagnose why this Go worker does not stop after cancellation. Explain the cause and verification limits; do not edit files unless fixing is requested."
       ],
       "brandColor": "#007D9C",
       "skillCount": 16
