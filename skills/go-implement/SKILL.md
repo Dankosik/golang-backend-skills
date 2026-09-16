@@ -1,13 +1,13 @@
 ---
 name: go-implement
-description: "Execution. Implement requested Go backend behavior within the project's existing contracts and technical choices."
+description: "Implement clear Go backend requirements using the project's existing contracts and technical choices."
 ---
 
 # Go Implement
 
 **Execution.** When the intended behavior is clear, implement it directly. Honor the requirements; preserve settled choices outside the requested change. An explicitly requested technical change is not an invitation to redesign unrelated parts.
 
-Read the affected code and callers, then extend the existing path. Resolve local details using the project's Go version, package conventions, and selected infrastructure.
+Read the affected code and callers, then extend the existing path. Resolve local details using the project's Go version, package conventions, and selected infrastructure. For multi-part work, prefer small working slices with observable behavior over building every layer before checking any result; a local fix does not need a separate planning ceremony.
 
 **Reuse.** Before adding a technical helper, look for a matching operation in nearby project code, the supported standard library, or declared dependencies. Keep the search proportional to the helper. Packages such as `strings`, `slices`, and `maps` cover many routine operations. Custom mechanics need a concrete semantic or operational gap; wrappers should add domain meaning or adaptation.
 
@@ -17,4 +17,4 @@ If a concrete contradiction prevents correct implementation, identify it and con
 
 Format changed Go code. Use the project's build and focused tests for the affected behavior, including a meaningful failure case. Add race, transport, database, fuzz, or performance checks only for a concrete claim or required project gate. Reuse applicable results for the same revision and environment; loading another skill is not a reason to rerun them.
 
-Within the environment's permissions, fix failures introduced by the change and rerun affected checks without stopping for review after the first patch. Finish when the requested outcome and required checks are satisfied, or state the concrete blocker and unavailable verification. Do not invent infrastructure, unrelated cleanup, or speculative checks as new completion gates.
+Within the environment's permissions, fix failures introduced by the change and rerun affected checks without stopping for review after the first patch. Check requested behavior separately from conformance to project conventions; success on one does not establish the other. Finish when the requested outcome and required checks are satisfied, or state the concrete blocker and unavailable verification. Do not invent infrastructure, unrelated cleanup, or speculative checks as new completion gates.

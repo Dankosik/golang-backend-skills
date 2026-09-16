@@ -1,6 +1,6 @@
 ---
 name: go-security
-description: "Authorization. Use when Go identity, resource permissions, tenancy, untrusted input, outbound destinations, filesystem access, or secrets cross a trust boundary."
+description: "Review or enforce Go authorization, tenant isolation, untrusted-input boundaries, and secret handling."
 ---
 
 # Go Security
@@ -15,4 +15,4 @@ Trace untrusted data to its interpreter or destination. Parameterized SQL, bound
 
 When browser or proxy behavior is affected, choose protections from the actual deployment. Automatically attached credentials can require CSRF defenses; CORS does not authorize server operations. Trust forwarding metadata only through the known proxy boundary. Bound caller-controlled work and resource consumption.
 
-Exercise the denial that would expose the flaw through the real enforcement path. Assert that protected data or effects did not escape, alongside intended successful access. A fabricated principal can test authorization, not credential verification. For review-only work, report supported risks without editing; report verification gaps precisely in either mode.
+Exercise the denial that would expose the flaw through the real enforcement path. Assert that protected data or effects did not escape, alongside intended successful access. A fabricated principal can test authorization, not credential verification. For review-only work, cite the reachable input, existing enforcement, and protected effect before reporting a defect; keep assumptions explicit and do not edit files. Report verification gaps precisely in either mode.

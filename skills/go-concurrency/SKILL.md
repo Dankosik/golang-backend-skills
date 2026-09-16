@@ -1,6 +1,6 @@
 ---
 name: go-concurrency
-description: "Ownership. Use when Go goroutines, channels, shared state, or parallel work need correct synchronization, cancellation, capacity bounds, or cleanup."
+description: "Implement or review Go goroutines, channels, shared-state synchronization, cancellation, joining, and work bounds."
 ---
 
 # Go Concurrency
@@ -14,3 +14,5 @@ Propagate context through dependent calls and release derived contexts. Cancella
 Bound pending work as well as active work. A semaphore acquired inside an unlimited number of goroutines still permits unlimited waiting. When using errgroup, account for blocking admission and the derived context ending when Wait returns.
 
 Verify the changed race, cancellation, capacity, or shutdown property with controlled coordination and bounded waits. Use the race detector for affected shared-memory paths where supported; it finds exercised races, not liveness failures. Observe worker termination separately and leave no test goroutines running. Report unsupported checks rather than substituting a weaker proof.
+
+For review-only work, do not edit files. Ground each finding in the affected synchronization or blocking path and a concrete failing interleaving; check for an existing exit or join before claiming it is absent.
