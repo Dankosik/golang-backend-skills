@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "G01",
+      "prompt": "Implement Clamp in this package. Clamp x to the inclusive [low, high] range. When low exceeds high, return an error matching ErrRange using errors.Is. Preserve the signature and finish the relevant checks.",
+      "expected_any": [
+        "go-implement"
+      ],
+      "files": {
+        "go.mod": "module example.com/skillfixture\n\ngo 1.23.0\n",
+        "app.go": "package fixture\n\nimport \"errors\"\n\nvar ErrRange = errors.New(\"invalid range\")\n\nfunc Clamp(x, low, high int) (int, error) {\n\treturn x, nil\n}\n"
+      },
+      "oracle": "package fixture\n\nimport (\n\t\"errors\"\n\t\"testing\"\n)\n\nfunc TestOracleClamp(t *testing.T) {\n\tfor _, c := range []struct{ x, low, high, want int }{\n\t\t{-5, -2, 4, -2}, {9, -2, 4, 4}, {1, -2, 4, 1},\n\t\t{-2, -2, 4, -2}, {4, -2, 4, 4}, {8, 3, 3, 3},\n\t} {\n\t\tgot, err := Clamp(c.x, c.low, c.high)\n\t\tif err != nil || got != c.want {\n\t\t\tt.Errorf(\"Clamp(%d,%d,%d) = %d,%v; want %d,nil\", c.x, c.low, c.high, got, err, c.want)\n\t\t}\n\t}\n\tif _, err := Clamp(0, 8, 2); !errors.Is(err, ErrRange) {\n\t\tt.Errorf(\"invalid range error = %v; want ErrRange\", err)\n\t}\n}\n",
+      "control": "package fixture\n\nimport \"errors\"\n\nvar ErrRange = errors.New(\"invalid range\")\n\nfunc Clamp(x, low, high int) (int, error) {\n\tif low > high {\n\t\treturn 0, ErrRange\n\t}\n\tif x < low {\n\t\treturn low, nil\n\t}\n\tif x > high {\n\t\treturn high, nil\n\t}\n\treturn x, nil\n}\n",
+      "tests": [
+        "TestOracleClamp"
+      ],
+      "trace_checks": [
+        "No architecture phase or unrelated cleanup.",
+        "Meaningful boundary/error checks actually run; introduced failures repaired.",
+        "No unnecessary race/fuzz/infrastructure gate."
+      ]
+    },
+    {
+      "id": "G09",
+      "prompt": "Fix the mounted /item route: a missing item must return status 404, Content-Type application/json, and exactly {\"error\":\"not_found\"} followed by a newline. Preserve X-Request-ID from the existing middleware. Test the mounted handler chain; no transport behavior is changing.",
+      "expected_any": [
+        "go-http",
+        "go-integration-testing"
+      ],
+      "files": {
+        "go.mod": "module example.com/skillfixture\n\ngo 1.23.0\n",
+        "app.go": "package fixture\n\nimport \"net/http\"\n\nfunc Router() http.Handler {\n\tmux := http.NewServeMux()\n\tmux.HandleFunc(\"/item\", missing)\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\tw.Header().Set(\"X-Request-ID\", \"fixture-request\")\n\t\tmux.ServeHTTP(w, r)\n\t})\n}\n\nfunc missing(w http.ResponseWriter, r *http.Request) {\n\thttp.Error(w, \"not_found\", http.StatusNotFound)\n}\n"
+      },
+      "oracle": "package fixture\n\nimport (\n\t\"net/http\"\n\t\"net/http/httptest\"\n\t\"testing\"\n)\n\nfunc TestOracleMountedResponse(t *testing.T) {\n\tr := httptest.NewRecorder()\n\tRouter().ServeHTTP(r, httptest.NewRequest(http.MethodGet, \"/item\", nil))\n\tif r.Code != 404 {\n\t\tt.Errorf(\"status = %d\", r.Code)\n\t}\n\tif got := r.Header().Get(\"Content-Type\"); got != \"application/json\" {\n\t\tt.Errorf(\"content type = %q\", got)\n\t}\n\tif got := r.Header().Get(\"X-Request-ID\"); got != \"fixture-request\" {\n\t\tt.Errorf(\"middleware header = %q\", got)\n\t}\n\tif got := r.Body.String(); got != \"{\\\"error\\\":\\\"not_found\\\"}\\n\" {\n\t\tt.Errorf(\"body = %q\", got)\n\t}\n}\n",
+      "control": "package fixture\n\nimport (\n\t\"io\"\n\t\"net/http\"\n)\n\nfunc Router() http.Handler {\n\tmux := http.NewServeMux()\n\tmux.HandleFunc(\"/item\", missing)\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\tw.Header().Set(\"X-Request-ID\", \"fixture-request\")\n\t\tmux.ServeHTTP(w, r)\n\t})\n}\n\nfunc missing(w http.ResponseWriter, r *http.Request) {\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tw.WriteHeader(http.StatusNotFound)\n\t_, _ = io.WriteString(w, \"{\\\"error\\\":\\\"not_found\\\"}\\n\")\n}\n",
+      "tests": [
+        "TestOracleMountedResponse"
+      ],
+      "trace_checks": [
+        "Agent tests mounted Router rather than only missing.",
+        "Raw status/headers/body assertions do not normalize away differences.",
+        "No unnecessary listening socket or database."
+      ]
+    },
+    {
+      "id": "G14",
+      "prompt": "Fix Label so a valid sql.NullString becomes a pointer to its String, including a valid empty string; an invalid value becomes nil. Keep the existing types and Go baseline. This is a pure conversion, not a query or schema change.",
+      "expected_any": [
+        "go-data",
+        "go-idiomatic"
+      ],
+      "files": {
+        "go.mod": "module example.com/skillfixture\n\ngo 1.23.0\n",
+        "app.go": "package fixture\n\nimport \"database/sql\"\n\nfunc Label(v sql.NullString) *string {\n\tif v.String == \"\" {\n\t\treturn nil\n\t}\n\treturn &v.String\n}\n"
+      },
+      "oracle": "package fixture\n\nimport (\n\t\"database/sql\"\n\t\"testing\"\n)\n\nfunc TestOracleNullMapping(t *testing.T) {\n\tfor _, c := range []struct {\n\t\tv    sql.NullString\n\t\twant *string\n\t}{\n\t\t{sql.NullString{String: \"stale\", Valid: false}, nil},\n\t\t{sql.NullString{}, nil},\n\t\t{sql.NullString{String: \"\", Valid: true}, oracleString(\"\")},\n\t\t{sql.NullString{String: \"car\", Valid: true}, oracleString(\"car\")},\n\t} {\n\t\tgot := Label(c.v)\n\t\tif c.want == nil {\n\t\t\tif got != nil {\n\t\t\t\tt.Errorf(\"%+v: expected nil, got %q\", c.v, *got)\n\t\t\t}\n\t\t\tcontinue\n\t\t}\n\t\tif got == nil || *got != *c.want {\n\t\t\tt.Errorf(\"%+v: expected non-nil %q, got %v\", c.v, *c.want, got)\n\t\t}\n\t}\n}\nfunc oracleString(s string) *string { return &s }\n",
+      "control": "package fixture\n\nimport \"database/sql\"\n\nfunc Label(v sql.NullString) *string {\n\tif !v.Valid {\n\t\treturn nil\n\t}\n\treturn &v.String\n}\n",
+      "tests": [
+        "TestOracleNullMapping"
+      ],
+      "trace_checks": [
+        "Preserve valid empty string vs invalid/null.",
+        "No database startup for pure conversion.",
+        "Do not claim query/transaction correctness from value tests."
+      ]
+    },
+    {
+      "id": "G17",
+      "prompt": "Fix cross-tenant writes in Handler. The tenant placed in context by our existing authentication layer is authoritative; the X-Tenant header is untrusted. Deny missing or wrong tenants with 403 and no protected write. Preserve successful access with 204. Credential verification itself is outside this change.",
+      "expected_any": [
+        "go-security",
+        "go-http",
+        "go-integration-testing"
+      ],
+      "files": {
+        "go.mod": "module example.com/skillfixture\n\ngo 1.23.0\n",
+        "app.go": "package fixture\n\nimport (\n\t\"context\"\n\t\"net/http\"\n)\n\ntype tenantKey struct{}\n\nfunc WithTenant(ctx context.Context, tenant string) context.Context {\n\treturn context.WithValue(ctx, tenantKey{}, tenant)\n}\n\ntype Store struct {\n\tTenant string\n\tWrites int\n}\n\nfunc Handler(s *Store) http.Handler {\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\tif r.Header.Get(\"X-Tenant\") != s.Tenant {\n\t\t\tw.WriteHeader(http.StatusForbidden)\n\t\t\treturn\n\t\t}\n\t\ts.Writes++\n\t\tw.WriteHeader(http.StatusNoContent)\n\t})\n}\n"
+      },
+      "oracle": "package fixture\n\nimport (\n\t\"net/http\"\n\t\"net/http/httptest\"\n\t\"testing\"\n)\n\nfunc TestOracleTenantEffect(t *testing.T) {\n\tfor _, c := range []struct {\n\t\ttenant, header string\n\t\tstatus, writes int\n\t}{\n\t\t{\"other\", \"owner\", 403, 0}, {\"\", \"owner\", 403, 0},\n\t\t{\"owner\", \"other\", 204, 1}, {\"owner\", \"\", 204, 1},\n\t} {\n\t\ts := &Store{Tenant: \"owner\"}\n\t\tr := httptest.NewRequest(http.MethodPost, \"/write\", nil)\n\t\tr = r.WithContext(WithTenant(r.Context(), c.tenant))\n\t\tr.Header.Set(\"X-Tenant\", c.header)\n\t\tw := httptest.NewRecorder()\n\t\tHandler(s).ServeHTTP(w, r)\n\t\tif w.Code != c.status || s.Writes != c.writes {\n\t\t\tt.Errorf(\"tenant=%q header=%q: status=%d writes=%d; want %d,%d\", c.tenant, c.header, w.Code, s.Writes, c.status, c.writes)\n\t\t}\n\t}\n\ts := &Store{Tenant: \"owner\"}\n\tr := httptest.NewRequest(http.MethodPost, \"/write\", nil)\n\tr.Header.Set(\"X-Tenant\", \"owner\")\n\tw := httptest.NewRecorder()\n\tHandler(s).ServeHTTP(w, r)\n\tif w.Code != 403 || s.Writes != 0 {\n\t\tt.Errorf(\"missing identity: status=%d writes=%d\", w.Code, s.Writes)\n\t}\n}\n",
+      "control": "package fixture\n\nimport (\n\t\"context\"\n\t\"net/http\"\n)\n\ntype tenantKey struct{}\n\nfunc WithTenant(ctx context.Context, tenant string) context.Context {\n\treturn context.WithValue(ctx, tenantKey{}, tenant)\n}\n\ntype Store struct {\n\tTenant string\n\tWrites int\n}\n\nfunc Handler(s *Store) http.Handler {\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\ttenant, ok := r.Context().Value(tenantKey{}).(string)\n\t\tif !ok || tenant == \"\" || tenant != s.Tenant {\n\t\t\tw.WriteHeader(http.StatusForbidden)\n\t\t\treturn\n\t\t}\n\t\ts.Writes++\n\t\tw.WriteHeader(http.StatusNoContent)\n\t})\n}\n",
+      "tests": [
+        "TestOracleTenantEffect"
+      ],
+      "trace_checks": [
+        "Denial protects the effect, not just response code.",
+        "Legitimate access still works; deny-all is a regression.",
+        "Fabricated context identity is not described as credential-verification evidence."
+      ]
+    }
+  ]
+}

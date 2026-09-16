@@ -56,6 +56,8 @@ Select skills for decisions that need their guidance, not merely because the rep
 
 Review and diagnosis produce findings unless changes were requested. Implementation includes applicable verification and fixing failures it introduces, not a stop after the first patch. Preserve settled choices outside the requested change; an explicit migration or agreed cache is not a reason to reopen unrelated decisions.
 
+Ground review findings in the affected code, a reachable triggering condition, and its consequence. Check existing callers, middleware, ownership, constraints, or recovery before claiming a safeguard is absent. Separate a violated requirement or documented rule from a design preference; missing evidence is uncertainty, not a confirmed defect.
+
 Match evidence to the changed claim: ordinary Go behavior, a mounted HTTP handler chain, an RPC path, real network transport, or database mechanisms. Build and focused tests are the ordinary starting point, not proof of every boundary. Keep required project checks, reuse still-applicable results, and report unavailable verification without inventing a new environment as a completion gate.
 
 ## Use
@@ -77,10 +79,12 @@ Keep each skill independent and decision-focused. Prefer an established concept 
 
 The pack uses the [Agent Skills format](https://agentskills.io/specification). Structural validity and a few useful examples do not establish a universal improvement across models.
 
-For maintainers: [instruction audit](docs/instruction-audit.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill. No behavioral comparison results are claimed by the candidate.
+For maintainers: [earlier instruction audit](docs/instruction-audit.md), [reference-driven review and negative probes](docs/reference-driven-review.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill.
+
+The [executable evaluation subset](docs/eval-runner.md) materializes four of the 20 Go scenarios with independent test oracles, broken/reference controls, and a standard-library Python runner. [Local verification](docs/local-verification.md) records evaluator checks separately from model behavior. No baseline/candidate model comparison results are claimed. Evaluation tools and fixtures are not included in the installed skill pack.
 
 ## Acknowledgements
 
-Follows the compact style of [Dankosik/java-backend-skills](https://github.com/Dankosik/java-backend-skills) and [Dankosik/fastify-backend-skills](https://github.com/Dankosik/fastify-backend-skills), with inspiration from [Dankosik/go-service-template-rest](https://github.com/Dankosik/go-service-template-rest) and [mattpocock/skills](https://github.com/mattpocock/skills). The instructions are written for Go semantics and work independently of those repositories.
+Follows the compact style of [Dankosik/java-backend-skills](https://github.com/Dankosik/java-backend-skills) and [Dankosik/fastify-backend-skills](https://github.com/Dankosik/fastify-backend-skills), with inspiration from [Dankosik/go-service-template-rest](https://github.com/Dankosik/go-service-template-rest) and [mattpocock/skills](https://github.com/mattpocock/skills). The instructions are written for Go semantics and work independently of those repositories. The [reference review](docs/reference-driven-review.md) records additional sources, adopted ideas, and intentional exclusions.
 
 [MIT license](LICENSE).

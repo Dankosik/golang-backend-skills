@@ -1,6 +1,6 @@
 ---
 name: go-testing
-description: "Behavior. Use when writing or improving Go unit tests, table tests, test doubles, fuzz targets, or deterministic tests of concurrent code."
+description: "Write or review Go unit tests, table tests, doubles, fuzz targets, and deterministic concurrent tests."
 ---
 
 # Go Testing
@@ -14,5 +14,7 @@ Group cases sharing one rule with named subtests; keep distinct behaviors readab
 For concurrent behavior, use explicit synchronization. Supported `testing/synctest` can help self-contained time and goroutine tests, not external I/O. Bound waits, join workers, and return worker failures to the test goroutine before fatal assertions. Sleeping does not establish synchronization.
 
 Use fuzzing when the task or a concrete input-property risk warrants it, with deterministic, independent invocations and a bounded run budget. Preserve discovered failures as regression cases; do not start an open-ended fuzz campaign for ordinary unit changes.
+
+For a regression test, establish that it distinguishes the reported defect from the intended behavior, using the original reproducer or a controlled faulty variant where practical. A test that merely restates the implementation is not evidence of the contract.
 
 Run the relevant project tests, confirm execution and skips, and use the race detector for affected shared-memory paths where supported or required. Reuse applicable results for the same revision and environment. Coverage and race results describe exercised behavior, not general correctness or liveness. Report unavailable checks; finish a test review with findings rather than unsolicited edits.

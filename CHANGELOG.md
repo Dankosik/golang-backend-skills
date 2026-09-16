@@ -9,6 +9,10 @@
 - Keep settled choices outside the change and avoid reopening an explicitly agreed cache or migration.
 - Refresh Go-specific starter prompts and native metadata; retain all 16 independently installable skill names and paths.
 - Add an instruction audit, 20 behavioral evaluation specifications, and an unfilled results template. Model comparisons have not been run.
+- Refine all 16 task-first descriptions; close remaining standalone review-only gaps and require relevant evidence/counterevidence before defect claims.
+- Add small behavior-complete implementation increments and independently discriminating regression checks without mandatory TDD or approval ceremony.
+- Materialize four Go evaluation fixtures with held-out runtime oracles, broken/reference controls, a standard-library Python runner, and 17 lightweight evaluator unit tests. These controls are not model evaluations.
+- Document source-by-source adoption and exclusions, eight additional negative/false-positive probes, bounded maintainer review, and actual local verification limits.
 - Prepare the next PATCH candidate only; published v1.0.0 pins, tags, and marketplace entries are unchanged.
 
 ## 1.0.0 — 2026-09-08

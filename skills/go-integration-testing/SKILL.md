@@ -1,6 +1,6 @@
 ---
 name: go-integration-testing
-description: "Mechanism. Use when Go tests must establish HTTP or RPC composition, database behavior, migrations, or interaction with real infrastructure, including Testcontainers."
+description: "Write or review Go tests of mounted HTTP/RPC paths, database mechanisms, migrations, and real infrastructure."
 ---
 
 # Go Integration Testing
@@ -17,4 +17,4 @@ For transaction, constraint, locking, or isolation claims, use the target engine
 
 Coordinate competing work, bound waits, and surface worker errors. Own cleanup for resources and committed fixtures, including partial setup failure; finish workers before removing resources.
 
-Run the intended tests with their configuration and confirm execution. Reuse applicable evidence for the same revision/environment, while respecting required checks. Report skips and unavailable infrastructure without substituting weaker proof or inventing a new harness as an unsolicited completion gate. Local integration success does not certify a deployed provider.
+Run the intended tests with their configuration and confirm execution. Reuse applicable evidence for the same revision/environment, while respecting required checks. Report skips and unavailable infrastructure without substituting weaker proof or inventing a new harness as an unsolicited completion gate. Local integration success does not certify a deployed provider. For review-only work, report which mechanism the tests do or do not establish without editing files or creating infrastructure.
