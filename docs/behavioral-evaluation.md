@@ -1,25 +1,31 @@
 # Focused behavioral evaluation
 
-Status: **not run**. These are evaluation specifications, not checked-in runnable
-Go application fixtures or evidence of model improvement. Authoring materials
-are not loaded by skills and are not additional user-project completion gates.
-The eight original submission examples remain in [submission](submission.md).
+Model comparison status: **not run**. The cases below specify larger behavioral
+claims; the [evaluation kit](../evals/README.md) supplies six small executable versions
+of G01, G04, G08, G09, G14, and G17 with independent graders. The other workspace
+fixtures remain unmaterialized. Grader self-tests are not evidence of model
+improvement. Authoring materials are not loaded by skills and are not additional
+user-project completion gates. The eight original submission examples remain in
+[submission](submission.md).
 
 ## Comparison protocol
 
-Compare no pack, the prior pack at
-`48be5eb558e81a2892cca47ebe9c9466dd92be1f`, and the exact candidate commit.
-Keep task input, fixture commit, permissions, model/version, reasoning settings,
-tool availability, time budget, and environment equal within each comparison.
-Record the client/harness version and other installed instructions; do not compare
-a pinned baseline with an unrecorded moving branch or stale plugin cache.
+For the current change, compare no pack, the pre-change pack at
+`4f5223a3e1a721b4af682e2da873e4cd3ae0d9de`, and the exact candidate commit. The earlier
+`48be5eb558e81a2892cca47ebe9c9466dd92be1f` baseline measures the broader change from
+the previous audit and may be retained as a separate comparison, not substituted
+silently. Keep task input, fixture commit, permissions, model/version, reasoning
+settings, tool availability, time budget, and environment equal within each
+comparison. Record the client/harness version and other installed instructions;
+do not compare a pinned baseline with an unrecorded moving branch or stale plugin cache.
 
 Before running a workspace case, materialize its fixture and commit it. Record
 its full SHA, module/toolchain versions, dependency metadata, generator versions,
 commands, seeds, environment variables, and available services. Infrastructure
 images and readiness checks must be pinned. Do not provide production credentials.
-Keep expected outcomes and independent grading checks outside the agent prompt.
-A fixture description below is not evidence that this setup has been created.
+Keep expected outcomes and independent grading checks outside the agent prompt
+and outside its readable workspace. A fixture description below is not evidence
+that its complete setup has been created; the kit documents its narrower coverage.
 
 Use fresh workspaces and sessions. For routing tests, give the agent only the
 natural request and fixture, without skill names or the expected routing column.
@@ -45,7 +51,7 @@ Record unnecessary reads, skill loads, approval requests, early stops, reruns,
 infrastructure creation, tokens, and elapsed time only after correctness and
 safety. A shorter trace that bypasses a security or database boundary is a
 regression. A meaningful required check is not waste merely because it is slow.
-Record evidence and limitations in [the results template](evaluation-results.md).
+Record evidence and limitations in [the results record](evaluation-results.md).
 
 ## Cases
 
@@ -303,7 +309,8 @@ unsafe conversion, forced service-load setup, or benchmark fishing.
 
 ## Release interpretation
 
-Structural and install checks do not execute these cases. Do not fill in passing
-results without actual traces and independent evidence. Select cases matching a
-semantic change and its nearest overlap/regression risks; preserve uncertainty
-when the available sample is small. Publish claims only for the tested settings.
+Structural and install checks do not execute these cases. The kit's self-test checks
+grader sensitivity, not model behavior. Do not fill in passing model results without
+actual traces and independent evidence. Select cases matching a semantic change and
+its nearest overlap/regression risks; preserve uncertainty when the available sample
+is small. Publish claims only for the tested settings.

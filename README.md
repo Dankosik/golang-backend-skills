@@ -56,6 +56,8 @@ Select skills for decisions that need their guidance, not merely because the rep
 
 Review and diagnosis produce findings unless changes were requested. Implementation includes applicable verification and fixing failures it introduces, not a stop after the first patch. Preserve settled choices outside the requested change; an explicit migration or agreed cache is not a reason to reopen unrelated decisions.
 
+Ground review findings in the affected code, triggering condition, and observable consequence. Inspect existing guards before declaring them missing. Distinguish a project-rule violation from a design preference, and a supported defect from a hypothesis. Correct implementation and conformance to conventions are separate judgments; neither substitutes for the other.
+
 Match evidence to the changed claim: ordinary Go behavior, a mounted HTTP handler chain, an RPC path, real network transport, or database mechanisms. Build and focused tests are the ordinary starting point, not proof of every boundary. Keep required project checks, reuse still-applicable results, and report unavailable verification without inventing a new environment as a completion gate.
 
 ## Use
@@ -77,10 +79,10 @@ Keep each skill independent and decision-focused. Prefer an established concept 
 
 The pack uses the [Agent Skills format](https://agentskills.io/specification). Structural validity and a few useful examples do not establish a universal improvement across models.
 
-For maintainers: [instruction audit](docs/instruction-audit.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results template](docs/evaluation-results.md). These are authoring materials, not prerequisites for using a skill. No behavioral comparison results are claimed by the candidate.
+For maintainers: [instruction audit](docs/instruction-audit.md), [reference adoption and reviewer briefs](docs/reference-adoption.md), [behavioral evaluation](docs/behavioral-evaluation.md), and [results record](docs/evaluation-results.md). The [evaluation kit](evals/README.md) supplies 29 routing prompts and six small executable Go fixtures with independent graders. These are authoring materials, not prerequisites for using a skill. Grader self-tests are distinct from model comparisons; no behavioral comparison results are claimed by the candidate.
 
 ## Acknowledgements
 
-Follows the compact style of [Dankosik/java-backend-skills](https://github.com/Dankosik/java-backend-skills) and [Dankosik/fastify-backend-skills](https://github.com/Dankosik/fastify-backend-skills), with inspiration from [Dankosik/go-service-template-rest](https://github.com/Dankosik/go-service-template-rest) and [mattpocock/skills](https://github.com/mattpocock/skills). The instructions are written for Go semantics and work independently of those repositories.
+Follows the compact style of [Dankosik/java-backend-skills](https://github.com/Dankosik/java-backend-skills) and [Dankosik/fastify-backend-skills](https://github.com/Dankosik/fastify-backend-skills), with inspiration from [Dankosik/go-service-template-rest](https://github.com/Dankosik/go-service-template-rest) and [mattpocock/skills](https://github.com/mattpocock/skills). Additional review and evaluation principles are traced to Open Code Review and the OpenAI articles in [reference adoption](docs/reference-adoption.md), including the limits of each transfer. The instructions are written for Go semantics and work independently of those repositories.
 
 [MIT license](LICENSE).

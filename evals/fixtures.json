@@ -1,0 +1,83 @@
+{
+  "G01": {
+    "editable": "clamp.go",
+    "seed_failures": [
+      "TestEvalInvalidRangeIdentity"
+    ],
+    "reference_replacements": [
+      {
+        "old": "return 0, errors.New(\"invalid range\")",
+        "new": "return 0, ErrInvalidRange"
+      }
+    ]
+  },
+  "G04": {
+    "editable": "worker.go",
+    "seed_failures": [
+      "TestEvalBlockedSendTerminates"
+    ],
+    "reference_replacements": [
+      {
+        "old": "\t\tout <- 1",
+        "new": "\t\tselect {\n\t\tcase out <- 1:\n\t\tcase <-ctx.Done():\n\t\t}"
+      }
+    ]
+  },
+  "G08": {
+    "editable": "service.go",
+    "seed_failures": [
+      "TestEvalPartialStartupCleanup"
+    ],
+    "reference_replacements": [
+      {
+        "old": "if err := connect(); err != nil {\n\t\treturn nil, err",
+        "new": "if err := connect(); err != nil {\n\t\t_ = resource.Close()\n\t\treturn nil, err"
+      }
+    ]
+  },
+  "G09": {
+    "editable": "http.go",
+    "seed_failures": [
+      "TestEvalMountedErrorContract"
+    ],
+    "reference_replacements": [
+      {
+        "old": "\"fmt\"",
+        "new": "\"encoding/json\""
+      },
+      {
+        "old": "fmt.Fprintf(w, `{\"error\":\"%s\"}`, r.URL.Query().Get(\"message\"))",
+        "new": "_ = json.NewEncoder(w).Encode(map[string]string{\"error\": r.URL.Query().Get(\"message\")})"
+      }
+    ]
+  },
+  "G14": {
+    "editable": "mapping.go",
+    "seed_failures": [
+      "TestEvalNullableMapping"
+    ],
+    "reference_replacements": [
+      {
+        "old": "row.Name.String != \"\"",
+        "new": "row.Name.Valid"
+      },
+      {
+        "old": "row.Count.Int64 != 0",
+        "new": "row.Count.Valid"
+      }
+    ]
+  },
+  "G17": {
+    "editable": "tenant.go",
+    "seed_failures": [
+      "TestEvalTenantDenialProtectsEffect",
+      "TestEvalTenantIntendedAccess"
+    ],
+    "reference_replacements": [
+      {
+        "old": "item.Tenant != r.URL.Query().Get(\"tenant\")",
+        "new": "item.Tenant != r.Context().Value(tenantKey{})"
+      }
+    ]
+  }
+}

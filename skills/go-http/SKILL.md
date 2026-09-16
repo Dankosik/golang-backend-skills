@@ -1,6 +1,6 @@
 ---
 name: go-http
-description: "Translation. Use when Go HTTP endpoints, routers, middleware, validation, serialization, errors, or streaming affect a backend contract."
+description: "Implement or review Go HTTP routing, middleware, request/response contracts, and streaming behavior."
 ---
 
 # Go HTTP
@@ -14,3 +14,5 @@ Decode bounded input into intentional types. Distinguish malformed transport inp
 Carry request context into downstream work. Choose body limits and transport deadlines for the actual interaction, including uploads and streams. A context timeout does not forcibly stop a handler. Preserve flushing and other required response capabilities through middleware. Once headers or stream bytes are committed, failure cannot become an ordinary replacement response. Never use ResponseWriter after the handler returns.
 
 Verify changed routing, middleware, encoding, and failure behavior through the mounted handler chain; `httptest.ResponseRecorder` can cover those in-process contracts. Calling only the leaf handler omits router and middleware behavior. Use a real test server and client for socket deadlines, disconnects, or transport streaming claims, not for every endpoint change. Report the boundary actually exercised.
+
+For review-only work, do not edit files. Cite the affected route and client-visible contract; inspect mounted middleware before claiming validation, authorization, or error handling is missing.

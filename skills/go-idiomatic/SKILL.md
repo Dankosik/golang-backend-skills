@@ -1,6 +1,6 @@
 ---
 name: go-idiomatic
-description: "Contracts. Use for Go representation, error-contract, or collection decisions where caller-visible semantics or readability need attention."
+description: "Review or improve Go value, error, interface, and collection semantics while preserving caller contracts."
 ---
 
 # Go Idiomatic
@@ -15,4 +15,4 @@ Use errors as values. Add meaningful context, preserve intentional error identit
 
 **Reuse.** Prefer existing project, standard-library, and established dependency operations when their semantics match. Generics should express a real shared algorithm or type relationship. Keep wrappers only for domain meaning or adaptation.
 
-For review, explain the contract risk and smallest justified change without editing files. For implementation, finish with formatted code and focused checks for the observable contract the change could disturb; avoid unrelated style churn.
+For review-only work, cite the affected code, caller-visible contract, and triggering value; explain the smallest justified change without editing files. For implementation, finish with formatted code and focused checks for the observable contract the change could disturb; avoid unrelated style churn.
