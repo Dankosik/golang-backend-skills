@@ -5,14 +5,16 @@ description: "Mechanism. Use when Go tests must establish HTTP or RPC compositio
 
 # Go Integration Testing
 
-**Prove the mechanism.** Identify what makes the promised behavior true, then choose the smallest test boundary that includes it. Choose scenarios that expose the relevant failure at that boundary. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Prove the mechanism.** Identify what makes the promised behavior true, then choose the smallest test boundary that includes it and a scenario that exposes its failure. Honor requirements and preserve settled choices outside the requested change.
 
-Preserve the project's Go version, drivers, transport, and test infrastructure. Reuse existing harnesses and established Testcontainers modules where suitable. A container is an environment, not the assertion. Match the target engine and relevant configuration, apply real migrations, establish readiness, and isolate each test's data.
+Preserve the Go baseline, drivers, transport, and test setup. Reuse existing harnesses. Use established Testcontainers modules when an infrastructure claim needs them; a container is an environment, not the assertion. For database cases, match the target engine and relevant configuration, apply real migrations, establish readiness, and isolate data.
 
-Exercise the actual router, middleware, or interceptor when their behavior matters. An `httptest` recorder covers handler output; use a real client/server transport for connection, TLS, streaming, or disconnect claims. Keep the mechanism under test real and replace only collaborators beyond it. A fabricated principal does not prove credential verification. Preserve contract-relevant distinctions in observed responses and effects; decoding, normalization, or test helpers must not conceal a violation.
+Exercise the actual router, middleware, or interceptor when its behavior matters. A recorder with the mounted HTTP handler chain can cover routing, middleware, and response contracts; invoking only a leaf handler omits that composition. Reuse an in-process RPC client/server harness for RPC semantics. Use real network transport for connection, TLS, socket deadlines, backpressure, or disconnect claims. Do not require network or database setup for unrelated in-process contracts.
 
-Database claims need the target engine. Exercise transaction boundaries and use independent connections for arbitration, locking, and visibility. Observe committed effects through a fresh read. Test-side rollback cannot undo independent application commits.
+Keep the mechanism real and replace only collaborators beyond it. A fabricated principal tests downstream authorization, not credential verification. Preserve contract distinctions in observed responses and effects; decoding, normalization, or helpers must not conceal violations.
 
-Coordinate races at a meaningful boundary; bound eventual assertions and surface worker errors. Own cleanup for connections, servers, containers, and committed fixtures, including partial setup failure. Finish workers before removing their resources.
+For transaction, constraint, locking, or isolation claims, use the target engine and real transactions. Use independent connections for arbitration and visibility, and fresh reads for committed effects. Test-side rollback cannot undo independent application commits.
 
-Run the intended test command with its required configuration, confirm the selected tests actually executed, and report skipped or unavailable infrastructure explicitly. State the boundary proved; local integration success does not certify a deployed provider.
+Coordinate competing work, bound waits, and surface worker errors. Own cleanup for resources and committed fixtures, including partial setup failure; finish workers before removing resources.
+
+Run the intended tests with their configuration and confirm execution. Reuse applicable evidence for the same revision/environment, while respecting required checks. Report skips and unavailable infrastructure without substituting weaker proof or inventing a new harness as an unsolicited completion gate. Local integration success does not certify a deployed provider.

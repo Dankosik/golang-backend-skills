@@ -1,4 +1,4 @@
-# Submission packet — Go Backend Skills 1.0.0
+# Submission packet — Go Backend Skills 1.0.1 (unreleased candidate)
 
 These are reviewer-ready listing details and proposed evaluation scenarios.
 They are not a claim that either provider has approved or published this plugin,
@@ -15,9 +15,9 @@ or that these model-behavior scenarios were executed during packaging validation
 - Terms/license: https://github.com/Dankosik/golang-backend-skills/blob/main/LICENSE
 - Logo: assets/logo.png (512×512)
 - Kind: skills only; no MCP, hooks, account integration, bundled executable, or publisher data service
-- Archive: `golang-backend-skills-1.0.0.zip` from this GitHub Release
+- Archive: `golang-backend-skills-1.0.1.zip` after building and publishing the candidate; not yet a published release
 - Starter prompts: `.codex-plugin/plugin.json` → `interface.defaultPrompt`
-- Release note: first versioned distribution; skill instruction text is unchanged
+- Release note: scope, evidence, routing, and completion corrections within the existing 16 skills
 
 ## Owner-controlled fields still required for a public-directory submission
 
@@ -106,6 +106,14 @@ f must return 0 and must return 1. Both requirements are mandatory; do not choos
 one silently."
 Expected: identify the contradiction and request the specific product decision
 needed to implement it. Continue only independent work; do not invent a policy.
+
+## Focused Go evaluation
+
+The original eight scenarios above are unchanged. For implicit routing,
+Go-specific semantics, scope, and completion regressions, use the
+[20 comparison cases](behavioral-evaluation.md) and [results template](evaluation-results.md).
+These cases have not been executed; concrete workspace fixtures must be created
+and pinned before model comparison. Packaging checks are not behavioral results.
 
 ## Provider routes
 

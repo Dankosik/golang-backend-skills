@@ -1,9 +1,12 @@
 # Install, update, and roll back
 
-The source is `skills/`. Each folder contains unchanged skill instructions and
+The source is `skills/`. Each folder contains independent skill instructions and
 an MIT license notice. The root `plugin.json` is the version authority; native
 Claude and Codex manifests are generated from it. A package version identifies
 one snapshot of all skills, while installation can select a subset.
+
+The repository prepares an unreleased 1.0.1 candidate. Examples below deliberately
+retain the published v1.0.0 pin; do not point consumers to an unpublished tag.
 
 ## Reproducible standalone installation
 
@@ -87,7 +90,8 @@ A published package version and its assets are immutable.
 
 Python 3.12 and `requirements-dev.txt` are authoring/CI requirements only.
 The archive contains skill folders, license notices, manifests, logo, README,
-privacy/support information and changelog; it excludes authoring scripts and CI.
+privacy/support information and changelog; it excludes authoring docs, scripts,
+and CI. Evaluation specifications are not required files for standalone skills.
 `SHA256SUMS` and the release manifest record its bytes and source commit.
 
 ```sh
@@ -101,7 +105,9 @@ python scripts/install_smoke.py
 The validation uses the official Agent Skills reference at a fixed commit and
 the published Agent Plugins 1.0.0 schema. Native client checks supplement those
 structural checks; none establishes universal behavioral quality. See
-[versioning](versioning.md) and [submission materials](submission.md).
+[versioning](versioning.md), [submission materials](submission.md), and the
+[behavioral comparison protocol](behavioral-evaluation.md). A passing distribution
+check does not execute model evaluations.
 
 Sources: [Agent Skills](https://agentskills.io/specification),
 [Agent Plugins](https://agent-plugins.org/plugin-authors/manifest),

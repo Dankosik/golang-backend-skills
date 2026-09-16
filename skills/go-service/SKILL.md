@@ -1,18 +1,18 @@
 ---
 name: go-service
-description: "Composition. Use when Go backend construction, configuration, startup, health, resource ownership, or graceful shutdown needs implementation or diagnosis."
+description: "Composition. Use for Go dependency wiring, configuration, startup, owned-resource lifetime, or graceful-shutdown decisions."
 ---
 
 # Go Service
 
-**Composition.** Make construction and lifetime visible. Trace how the affected component receives its dependencies and configuration, starts serving, and releases resources. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Composition.** Make construction and lifetime visible for the affected component. Trace the dependency, configuration, or lifecycle boundary changed by the task rather than re-auditing the whole service. Honor requirements and preserve settled choices outside the requested change.
 
 Prefer explicit wiring and ordinary constructors in the existing composition root. Reuse the project's lifecycle machinery before adding a container or generic application framework. Keep hidden I/O, goroutine startup, mutable globals, and process exits out of reusable packages. Request context belongs to the operation, not a shared service field.
 
-Parse related settings into typed configuration at the boundary. Distinguish missing, empty, invalid, and deliberately defaulted values. Validate required relationships before accepting work; never make an invalid deployment appear healthy with placeholder credentials. Clean up resources already acquired when later initialization fails.
+For configuration and startup, parse related settings into typed configuration. Distinguish missing, empty, invalid, and deliberately defaulted values. Validate required relationships before accepting work; never hide invalid deployment settings with placeholder credentials. Clean up resources already acquired when later initialization fails.
 
-Separate stopping admission, draining accepted work, cancellation, joining workers, and closing dependencies. Keep dependencies available until their users finish. Give cleanup its own bounded context when the initiating context is already canceled. Wait for actual shutdown completion before returning from main; a server's serving loop can return before draining finishes.
+For shutdown changes, separate stopping admission, draining accepted work, cancellation, joining workers, and closing dependencies. Keep dependencies available until their users finish. Give cleanup a bounded context when the initiating context is already canceled. Wait for shutdown completion before returning from main; a serving loop can return before draining finishes.
 
-Where health checks exist, distinguish readiness to accept work from process liveness. Account for long-lived or hijacked connections separately when the server does not drain them.
+When health or server lifetime is affected, distinguish readiness from liveness and account for long-lived or hijacked connections the server does not drain. Preserve the deployment contract.
 
-Exercise the relevant invalid configuration, partial startup failure, or shutdown ordering with observable resource cleanup. Preserve the existing deployment contract.
+Verify the changed configuration, startup, or shutdown property with observable cleanup at the relevant boundary. Do not require all lifecycle scenarios for unrelated wiring changes. For diagnosis, report the supported explanation rather than making unsolicited changes.

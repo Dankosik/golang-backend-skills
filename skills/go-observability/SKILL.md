@@ -5,7 +5,7 @@ description: "Operability. Use when Go logs, metrics, traces, probes, or lifecyc
 
 # Go Observability
 
-**Operability.** Start with the operational question and choose the smallest signal that answers it. Honor supplied requirements and settled technical choices; resolve only what the task leaves open.
+**Operability.** Start with the operational question and choose the smallest signal that answers it. Honor requirements and preserve settled choices outside the requested change.
 
 Follow the affected business operation through existing instrumentation. Reuse the project's logger, registries, and instrumented clients. Preserve its telemetry stack; a supported standard API can fill a gap without requiring a logging or tracing migration.
 
@@ -13,6 +13,6 @@ Use metrics for aggregate rates, latency, failures, and saturation; traces for a
 
 Propagate correlation through the actual context and goroutine boundaries. Give spans an owner and an end on every exit. Keep structured errors useful while excluding secrets and sensitive payloads; caller-provided correlation is not trusted identity.
 
-Treat probes as control inputs. Liveness describes local progress; readiness describes ability to serve the contract. Consider the platform's response to a shared dependency failure. Restrict diagnostic endpoints and account for profiling overhead.
+When probes change, treat them as control inputs: liveness describes local progress and readiness describes ability to serve. Consider the platform's response to a shared dependency failure. When diagnostic surfaces change, restrict access and account for profiling overhead.
 
-Observe lifecycle changes through admission, in-flight work, cleanup, and telemetry flushing within the shutdown budget. Verify emitted signals and relevant failure behavior. Finish when the question is answerable with bounded signals, distinguishing local checks from deployment evidence.
+When lifecycle signals or flushing change, observe admission, in-flight work, cleanup, and telemetry flushing within the shutdown budget. For an ordinary signal edit, verify its output, relevant failure behavior, cardinality, and absence of duplication without adding a lifecycle audit. Finish when the requested question is answerable, distinguishing local checks from deployment evidence; diagnosis alone does not authorize edits.
