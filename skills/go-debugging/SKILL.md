@@ -1,6 +1,6 @@
 ---
 name: go-debugging
-description: "Causality. Use for an uncertain Go defect, panic, hang, startup failure, resource leak, or flaky behavior."
+description: "Diagnose an uncertain Go bug, panic, hang, startup failure, resource leak, or flaky behavior."
 ---
 
 # Go Debugging

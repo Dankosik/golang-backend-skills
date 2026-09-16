@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "G01",
+      "prompt": "Implement Clamp in this Go package. Clamp to the inclusive range; when min exceeds max, return an error matching ErrRange with errors.Is. Preserve the signature and supported Go version. Complete the relevant checks without adding infrastructure. Keep go.mod unchanged; add no dependencies or services.",
+      "required_tests": [
+        "TestContractClamp",
+        "TestContractRangeError"
+      ]
+    },
+    {
+      "id": "G08",
+      "prompt": "Fix Build so the first resource is closed exactly once when the second constructor fails. Return an error matching that constructor failure even if cleanup also fails; return no resources on failure. On success, preserve resource identity/order and transfer cleanup to the caller. If the first constructor fails, do not call the second. Keep go.mod unchanged; add no dependencies or services.",
+      "required_tests": [
+        "TestContractPartialStartup",
+        "TestContractSuccessfulStartup",
+        "TestContractFirstFailure"
+      ]
+    },
+    {
+      "id": "G09",
+      "prompt": "Fix the /item response in NewHandler: HTTP 400, Content-Type application/json, and a JSON object containing only error=invalid. Preserve the existing X-Service middleware and unknown-route behavior. Test the mounted handler chain; no network transport behavior is changing. Keep go.mod unchanged; add no dependencies or services.",
+      "required_tests": [
+        "TestContractMountedError",
+        "TestContractUnknownRoute"
+      ]
+    },
+    {
+      "id": "G14",
+      "prompt": "Fix Convert: an invalid sql.NullInt64 must map to nil, while a valid value must map to an independent pointer preserving all int64 bits, including zero. This is pure value conversion, not a database query. Preserve the signature and Go baseline; add the relevant tests. Keep go.mod unchanged; add no dependencies or services.",
+      "required_tests": [
+        "TestContractNull",
+        "TestContractExactValue"
+      ]
+    },
+    {
+      "id": "G17",
+      "prompt": "Fix cross-tenant record access in NewHandler. The tenant constructor argument comes from an already trusted application boundary; request headers must not override it. Return 403 for another tenant record, 404 for a missing record, and the existing body for permitted access. Test denial and successful access through the handler. Credential verification is outside this change. Keep go.mod unchanged; add no dependencies or services.",
+      "required_tests": [
+        "TestContractTenantDenial",
+        "TestContractTenantAccess"
+      ]
+    }
+  ]
+}

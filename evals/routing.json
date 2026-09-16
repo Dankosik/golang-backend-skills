@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "status": "not_run",
+  "notes": "Supply only prompt and pinned task context to the agent. Relevant skills are review guidance, not a required sequence. Counterevidence cases require materialized context before behavioral scoring. Explicit-invocation examples remain in docs/submission.md.",
+  "cases": [
+    {
+      "id": "R01",
+      "kind": "implicit",
+      "prompt": "Implement the agreed Go rule in this package and finish the relevant checks. Do not revisit the technical design.",
+      "relevant_skills": [
+        "go-implement"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R02",
+      "kind": "implicit",
+      "prompt": "Review this Go cleanup: callers distinguish nil and empty slices and match a sentinel error. Do not edit files.",
+      "relevant_skills": [
+        "go-idiomatic"
+      ],
+      "expected_mode": "review"
+    },
+    {
+      "id": "R03",
+      "kind": "implicit",
+      "prompt": "Assess whether this Go forwarding wrapper owns a useful responsibility; preserve the separate consumer interface that isolates a dependency.",
+      "relevant_skills": [
+        "go-design"
+      ],
+      "expected_mode": "review"
+    },
+    {
+      "id": "R04",
+      "kind": "implicit",
+      "prompt": "Fix the Go worker that remains blocked on a channel after cancellation. Its owner must observe termination.",
+      "relevant_skills": [
+        "go-concurrency"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R05",
+      "kind": "implicit",
+      "prompt": "This Go service hangs although the race detector is clean. Diagnose the cause without editing files.",
+      "relevant_skills": [
+        "go-debugging"
+      ],
+      "expected_mode": "review"
+    },
+    {
+      "id": "R06",
+      "kind": "implicit",
+      "prompt": "Audit this Go operation for allocation and latency opportunities. No measurements exist; report hypotheses without edits.",
+      "relevant_skills": [
+        "go-performance"
+      ],
+      "expected_mode": "review"
+    },
+    {
+      "id": "R07",
+      "kind": "implicit",
+      "prompt": "This Go module compiles in the workspace but fails for standalone consumers. Fix the resolution issue without upgrading Go.",
+      "relevant_skills": [
+        "go-build"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R08",
+      "kind": "implicit",
+      "prompt": "Fix cleanup of the first dependency when the second Go service constructor fails.",
+      "relevant_skills": [
+        "go-service"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R09",
+      "kind": "implicit",
+      "prompt": "Fix the JSON error on this mounted Go HTTP route. Preserve middleware and test its in-process contract.",
+      "relevant_skills": [
+        "go-http"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R10",
+      "kind": "implicit",
+      "prompt": "Fix the Go streaming RPC client: CloseSend succeeds but the server returns a terminal error.",
+      "relevant_skills": [
+        "go-grpc"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R11",
+      "kind": "implicit",
+      "prompt": "Fix the shared-pool write escaping this Go transaction. Use the existing target-engine rollback test setup.",
+      "relevant_skills": [
+        "go-data"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R12",
+      "kind": "implicit",
+      "prompt": "Fix cross-tenant access through the Go handler and assert that protected data does not escape.",
+      "relevant_skills": [
+        "go-security"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R13",
+      "kind": "implicit",
+      "prompt": "Implement the already agreed Go cache keys, TTL, invalidation, and bounded fallback using the existing library.",
+      "relevant_skills": [
+        "go-integrations"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R14",
+      "kind": "implicit",
+      "prompt": "Redact this credential from the existing Go request error log. Do not rework probes or lifecycle.",
+      "relevant_skills": [
+        "go-observability"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R15",
+      "kind": "implicit",
+      "prompt": "Add deterministic unit cases for this Go boundary rule, preserving the supported toolchain and assertion library.",
+      "relevant_skills": [
+        "go-testing"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "R16",
+      "kind": "implicit",
+      "prompt": "Use the existing Go client/server harness to test actual disconnect cancellation; a leaf handler test is insufficient.",
+      "relevant_skills": [
+        "go-integration-testing"
+      ],
+      "expected_mode": "implementation"
+    },
+    {
+      "id": "N01",
+      "kind": "negative",
+      "prompt": "Fix only this spelling mistake in the README of a Go repository; do not inspect or change application code.",
+      "relevant_skills": [],
+      "expected_mode": "limited_to_request"
+    },
+    {
+      "id": "N02",
+      "kind": "negative",
+      "prompt": "Fix this JavaScript worker cancellation bug in a Node.js application. There is no Go code.",
+      "relevant_skills": [],
+      "expected_mode": "limited_to_request"
+    },
+    {
+      "id": "N03",
+      "kind": "negative",
+      "prompt": "Translate the supplied Go error message into Russian. Do not diagnose the program.",
+      "relevant_skills": [],
+      "expected_mode": "limited_to_request"
+    },
+    {
+      "id": "N04",
+      "kind": "negative",
+      "prompt": "Fix a path bug in this Python script that packages Markdown skills. There are no Go modules or Go build commands.",
+      "relevant_skills": [],
+      "expected_mode": "limited_to_request"
+    },
+    {
+      "id": "C01",
+      "kind": "counterevidence",
+      "prompt": "Review the Go leaf handler for missing authorization. The supplied complete mounted route wraps it with the existing authenticated tenant-enforcing middleware. Do not edit files.",
+      "relevant_skills": [
+        "go-http",
+        "go-security"
+      ],
+      "expected_mode": "review",
+      "observe": "Inspect the mounted chain; do not report missing authorization solely because the leaf omits it."
+    },
+    {
+      "id": "C02",
+      "kind": "counterevidence",
+      "prompt": "Review this Go interface with one implementation. Its consumer uses it to isolate outbound billing failures; do not edit code.",
+      "relevant_skills": [
+        "go-design"
+      ],
+      "expected_mode": "review",
+      "observe": "One implementation is not evidence of an unnecessary interface; assess the real consumer boundary."
+    },
+    {
+      "id": "C03",
+      "kind": "counterevidence",
+      "prompt": "Review the Go duplicate-reservation path. The supplied schema has a unique constraint; the real insert conflict is mapped to the documented rejection. Do not edit files.",
+      "relevant_skills": [
+        "go-data"
+      ],
+      "expected_mode": "review",
+      "observe": "Do not infer a persisted duplication race solely from a preflight read; inspect the constraint and write outcome."
+    },
+    {
+      "id": "C04",
+      "kind": "counterevidence",
+      "prompt": "Review this Go retry path. The supplied provider contract and implementation use a stable persisted operation key for replay, with equivalent request meaning. Do not edit files.",
+      "relevant_skills": [
+        "go-integrations"
+      ],
+      "expected_mode": "review",
+      "observe": "Inspect the actual deduplication scope; neither invent missing idempotency nor infer an unlimited exactly-once guarantee."
+    }
+  ]
+}

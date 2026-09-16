@@ -1,6 +1,6 @@
 ---
 name: go-grpc
-description: "Contract. Use when Go gRPC services, clients, interceptors, Protobuf evolution, status mapping, deadlines, or streams need implementation or review."
+description: "Implement or review Go RPC contracts, Protobuf evolution, interceptors, status, deadlines, and streams."
 ---
 
 # Go gRPC
@@ -15,4 +15,4 @@ Reuse client connections and established middleware. Use client construction app
 
 For streams, give send, receive, and termination explicit owners. Respect flow control, bound application buffering, and serialize each direction's operations. Half-closing sends does not observe terminal status. Receive the final outcome or cancel abandoned calls and join their goroutines.
 
-For review, report contract risks and the smallest justified change without editing. For implementation, test the affected property: schema compatibility with the existing generation/compatibility checks; status, interceptors, cancellation, or stream completion through an RPC. Reuse an in-process RPC harness when it includes the mechanism; do not claim it proves deployment transport behavior. Address bounded graceful draining and forced-stop fallback when changing service shutdown, not for every RPC edit.
+For review-only work, report contract risks and the smallest justified change without editing. For implementation, test the affected property: schema compatibility with the existing generation/compatibility checks; status, interceptors, cancellation, or stream completion through an RPC. Reuse an in-process RPC harness when it includes the mechanism; do not claim it proves deployment transport behavior. Address bounded graceful draining and forced-stop fallback when changing service shutdown, not for every RPC edit.

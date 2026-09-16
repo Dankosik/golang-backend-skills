@@ -1,6 +1,6 @@
 ---
 name: go-observability
-description: "Operability. Use when Go logs, metrics, traces, probes, or lifecycle signals must explain and support backend behavior."
+description: "Implement or review Go logs, metrics, traces, probes, and lifecycle signals for a concrete operational question."
 ---
 
 # Go Observability
@@ -15,4 +15,4 @@ Propagate correlation through the actual context and goroutine boundaries. Give 
 
 When probes change, treat them as control inputs: liveness describes local progress and readiness describes ability to serve. Consider the platform's response to a shared dependency failure. When diagnostic surfaces change, restrict access and account for profiling overhead.
 
-When lifecycle signals or flushing change, observe admission, in-flight work, cleanup, and telemetry flushing within the shutdown budget. For an ordinary signal edit, verify its output, relevant failure behavior, cardinality, and absence of duplication without adding a lifecycle audit. Finish when the requested question is answerable, distinguishing local checks from deployment evidence; diagnosis alone does not authorize edits.
+When lifecycle signals or flushing change, observe admission, in-flight work, cleanup, and telemetry flushing within the shutdown budget. For an ordinary signal edit, verify its output, relevant failure behavior, cardinality, and absence of duplication without adding a lifecycle audit. Finish when the requested question is answerable, distinguishing local checks from deployment evidence; review or diagnosis alone does not authorize edits.

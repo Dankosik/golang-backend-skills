@@ -1,6 +1,6 @@
 ---
 name: go-integrations
-description: "Delivery semantics. Use when Go outbound calls, retries, messages, jobs, or caches must remain correct across delay, duplication, failure, or restart."
+description: "Implement or review Go outbound calls, retries, messages, jobs, and caches across delay, duplication, and failure."
 ---
 
 # Go Integrations
@@ -18,3 +18,5 @@ For messages and jobs, follow business commit, publication, acknowledgement, red
 For caches, identify authoritative data, key identity, freshness, invalidation, and bounded origin fallback. Consider concurrent stale refill. Do not propose speculative caching, but implement an explicitly agreed cache contract without reopening its justification or claiming an unmeasured speedup.
 
 Verify the changed delivery or freshness property at its consequential failure point, observing the actual effect. Use the real dependency when its semantics are the claim; pure retry policy or key logic can use controlled collaborators. Do not require a broker or restart test for every integration change. State unavailable evidence and do not expand the task to invent infrastructure.
+
+For review-only work, do not edit files. Tie each finding to a concrete replay, acknowledgement, or freshness failure; inspect existing deduplication and the provider's actual contract before declaring a missing guarantee.
